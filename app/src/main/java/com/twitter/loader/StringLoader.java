@@ -19,6 +19,11 @@ public class StringLoader extends AsyncTaskLoader<List<String>> {
 
     @Override
     public List<String> loadInBackground() {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            // ignore
+        }
         ArrayList<String> list = new ArrayList<>();
         for (char c = 'A'; c <= 'z'; c++) {
             final StringBuilder buff = new StringBuilder();
@@ -51,8 +56,8 @@ public class StringLoader extends AsyncTaskLoader<List<String>> {
     }
 
     @Override
-    public void reset() {
-        super.reset();
+    protected void onReset() {
+        super.onReset();
         mCache = null;
     }
 }
